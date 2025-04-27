@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              'Silakan pilih menu di sidebar untuk melakukan CRUD data produk, kategori, jenis, suplier, gudang, ataupun kurir.',
+              'Silakan pilih menu di sidebar untuk melakukan CRUD data produk, kategori, jenis, suplier, gudang, ataupun kurir',
               style: TextStyle(fontSize: 18, color: Colors.black87),
             ),
             const SizedBox(height: 32),
