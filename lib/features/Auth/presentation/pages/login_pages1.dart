@@ -62,24 +62,6 @@ class LoginPages1 extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          //   BlocConsumer<AuthBloc, AuthState>(
-          //     listener: (context, state) {
-          //       if (state is AuthStateError) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //     SnackBar(
-          //       content: Text(state.message),
-          //       duration: const Duration(seconds: 3),
-          //     ),
-          //   );
-          // } else if (state is AuthStateLoaded) {
-          //   context.go('/'); // Navigate to home page on success
-          // }
-          //     },
-          //     builder: (context, state) {
-          //       return ElevatedButton(onPressed: state is Aut, child: );
-          //     },
-          //   )
-          // Button Login
           SizedBox(
             height: 50,
             width: double.infinity,
