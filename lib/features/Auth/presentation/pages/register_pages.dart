@@ -169,7 +169,7 @@ class RegisterPages extends StatelessWidget {
                             onTap: () {
                               context.go('/');
                             },
-                            child: Text(
+                            child: const Text(
                               'Sudah punya akun? Login',
                               style: TextStyle(
                                 color: Colors.deepOrangeAccent,
