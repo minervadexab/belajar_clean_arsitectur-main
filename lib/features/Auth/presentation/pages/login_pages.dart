@@ -13,6 +13,7 @@ class LoginPages extends StatelessWidget {
     final TextEditingController password = TextEditingController();
 
     return Scaffold(
+      backgroundColor: Colors.blueAccent.shade100.withOpacity(0.2),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -24,31 +25,43 @@ class LoginPages extends StatelessWidget {
                   'Selamat Datang',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
+                        color: Colors.blueAccent,
                       ),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'silahkan login untuk masuk aplikasi',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  'Silahkan login untuk masuk aplikasi',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.black54,
+                      ),
                 ),
                 const SizedBox(height: 32),
                 Card(
-                  elevation: 4,
+                  elevation: 8,
+                  color: Colors.white,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(20),
                   ),
+                  shadowColor: Colors.blueAccent.withOpacity(0.4),
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       children: [
                         // email form
                         TextFormField(
                           controller: email,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.person),
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.person, color: Colors.blueAccent),
                             hintText: 'email@mail.com',
                             labelText: 'Email',
-                            border: OutlineInputBorder(),
+                            labelStyle: const TextStyle(color: Colors.blueAccent),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.blueAccent),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
                         ),
                         const SizedBox(height: 20),
@@ -60,7 +73,7 @@ class LoginPages extends StatelessWidget {
                               controller: password,
                               obscureText: state,
                               decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.lock),
+                                prefixIcon: const Icon(Icons.lock, color: Colors.blueAccent),
                                 suffixIcon: IconButton(
                                   onPressed: () {
                                     context.read<OptionCubit>().change();
@@ -69,11 +82,19 @@ class LoginPages extends StatelessWidget {
                                     state
                                         ? Icons.visibility_off_outlined
                                         : Icons.remove_red_eye_outlined,
+                                    color: Colors.blueAccent,
                                   ),
                                 ),
                                 hintText: 'password...',
                                 labelText: 'Password',
-                                border: const OutlineInputBorder(),
+                                labelStyle: const TextStyle(color: Colors.blueAccent),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(color: Colors.blueAccent),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
                               ),
                               validator: (String? value) {
                                 return (value != null && value.contains('@'))
@@ -94,7 +115,7 @@ class LoginPages extends StatelessWidget {
                             child: Text(
                               'Tidak punya akun? Register',
                               style: TextStyle(
-                                color: Theme.of(context).primaryColor,
+                                color: Colors.deepOrangeAccent,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -105,7 +126,7 @@ class LoginPages extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                
+
                 BlocConsumer<AuthBloc, AuthState>(
                   listener: (context, state) {
                     if (state is AuthStateError) {
@@ -122,18 +143,29 @@ class LoginPages extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.read<AuthBloc>().add(AuthEventLogin(
-                              email: email.text, password: password.text));
+                          context.read<AuthBloc>().add(
+                                AuthEventLogin(
+                                  email: email.text,
+                                  password: password.text,
+                                ),
+                              );
                         },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 16),
+                          backgroundColor: Colors.blueAccent,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(16),
                           ),
+                          elevation: 5,
+                          shadowColor: Colors.blueAccent.withOpacity(0.5),
                         ),
                         child: Text(
                           state is AuthStateLoading ? 'Loading...' : 'Login',
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.2,
+                          ),
                         ),
                       ),
                     );
